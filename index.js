@@ -3,10 +3,10 @@ const Twitter = require('twitter');
 const config = require('./config/config');
 
 const client = new Twitter({
-  consumer_key: config.consumer_key,
-  consumer_secret: config.consumer_secret,
-  access_token_key: config.access_token_key,
-  access_token_secret: config.access_token_secret
+  consumer_key: process.env.CONSUMER_KEY || config.consumer_key,
+  consumer_secret: process.env.CONSUMER_SECRET || config.consumer_secret,
+  access_token_key: process.env.ACCESS_TOKEN_KEY || config.access_token_key,
+  access_token_secret: process.env.ACCESS_TOKEN_SECRET || config.access_token_secret
 });
 
 const streamTo = (trackFilter = '', streamHandler = (err, tweet) => {}) => {
